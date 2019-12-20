@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-
+import './App.css';
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
 import slugify from 'slugify';
-
-import './App.css';
+import CustomOptionsBox from './CustomOptionsBox/CustomOptionsBox';
+import CartBox from './CartBox/CartBox';
 
 // This object will allow us to
 // easily convert numbers into US dollar values
@@ -14,27 +14,32 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 });
 
 class App extends Component {
-  state = {
-    selected: {
-      Processor: {
-        name: '17th Generation Intel Core HB (7 Core with donut spare)',
-        cost: 700
-      },
-      'Operating System': {
-        name: 'Ubuntu Linux 16.04',
-        cost: 200
-      },
-      'Video Card': {
-        name: 'Toyota Corolla 1.5v',
-        cost: 1150.98
-      },
-      Display: {
-        name: '15.6" UHD (3840 x 2160) 60Hz Bright Lights and Knobs',
-        cost: 1500
+  constructor(props) {
+    super(props);
+    this.state = {
+      //State with initial defaults
+      selected: {
+        Processor: {
+          name: '17th Generation Intel Core HB (7 Core with donut spare)',
+          cost: 700
+        },
+        'Operating System': {
+          name: 'Ubuntu Linux 16.04',
+          cost: 200
+        },
+        'Video Card': {
+          name: 'Toyota Corolla 1.5v',
+          cost: 1150.98
+        },
+        Display: {
+          name: '15.6" UHD (3840 x 2160) 60Hz Bright Lights and Knobs',
+          cost: 1500
+        }
       }
-    }
-  };
+    };
+  }
 
+  //Sets new option that is selected
   updateFeature = (feature, newValue) => {
     const selected = Object.assign({}, this.state.selected);
     selected[feature] = newValue;
@@ -44,6 +49,8 @@ class App extends Component {
   };
 
   render() {
+    //Takes care of rendering each indiviudal option (form input) and 
+    //calling the updateFeature function to update state when clicked
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
       const options = this.props.features[feature].map(item => {
@@ -65,6 +72,7 @@ class App extends Component {
         );
       });
 
+      //Fieldset for each category and product options displayed
       return (
         <fieldset className="feature" key={featureHash}>
           <legend className="feature__name">
@@ -79,6 +87,7 @@ class App extends Component {
       const featureHash = feature + '-' + idx;
       const selectedOption = this.state.selected[feature];
 
+      //Displays product selected in the cart for each category
       return (
         <div className="summary__option" key={featureHash}>
           <div className="summary__option__label">{feature} </div>
@@ -95,6 +104,7 @@ class App extends Component {
       0
     );
 
+    //Holds skeleton of app and cart total
     return (
       <div className="App">
         <header>
@@ -116,6 +126,10 @@ class App extends Component {
             </div>
           </section>
         </main>
+        <div>
+          <CustomOptionsBox selectedOption={this.state.selected} optionsAvailable={this.props.features} />
+          <CartBox selectedOption={this.state.selected} />;
+      </div>
       </div>
     );
   }
