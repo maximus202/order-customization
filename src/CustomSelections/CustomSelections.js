@@ -8,7 +8,8 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 
 class CustomSelections extends React.Component {
     render() {
-        const options = Object.keys(this.props.optionsAvailable).map((option, idx) => {
+        return <div>Hello world!!</div>
+        /*const options = Object.keys(this.props.optionsAvailable).map((option, idx) => {
             //Callback function being ran is storing feature-id in featureHash
             const optionHash = option + '-' + idx;
             //Callback function then takes each feature category and runs another callback function
@@ -52,7 +53,7 @@ class CustomSelections extends React.Component {
                     {options}
                 </fieldset>
             );
-        });
+        });*/
     }
 }
 
