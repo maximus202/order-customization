@@ -40,9 +40,9 @@ class App extends Component {
   }
 
   //Sets new option that is selected
-  updateFeature = (feature, newValue) => {
+  updateOption = (option, newValue) => {
     const selected = Object.assign({}, this.state.selected);
-    selected[feature] = newValue;
+    selected[option] = newValue;
     this.setState({
       selected
     });
