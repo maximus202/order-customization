@@ -2,7 +2,6 @@ import React from 'react';
 
 class CartTotal extends React.Component {
     render() {
-        console.log(this.props)
         return (
             <div className="summary__total">
                 <div className="summary__total__label">Total</div>

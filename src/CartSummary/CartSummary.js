@@ -3,7 +3,6 @@ import CartTotal from '../CartTotal/CartTotal';
 
 class CartSummary extends React.Component {
     render() {
-        console.log(this.props)
         return (
             <div>
                 <div className="summary__option" key={'featureHash'}>

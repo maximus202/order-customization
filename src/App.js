@@ -3,14 +3,13 @@ import './App.css';
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
 import slugify from 'slugify';
-import CustomOptionsBox from './CustomOptionsBox/CustomOptionsBox';
+import CustomFeaturesBox from './CustomFeaturesBox/CustomFeaturesBox';
 import CartBox from './CartBox/CartBox';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //State with initial defaults
       selected: {
         Processor: {
           name: '17th Generation Intel Core HB (7 Core with donut spare)',
@@ -33,12 +32,8 @@ class App extends Component {
   }
 
   //Sets new option that is selected
-  updateOption = (option, newValue) => {
-    const selected = Object.assign({}, this.state.selected);
-    selected[option] = newValue;
-    this.setState({
-      selected
-    });
+  updateOption = (event) => {
+
   };
 
   render() {
@@ -49,17 +44,17 @@ class App extends Component {
       const options = this.props.features[feature].map(item => {
         const itemHash = slugify(JSON.stringify(item));
       });
-    });*/
-
+    });
+  
     const summary = Object.keys(this.state.selected).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
       const selectedOption = this.state.selected[feature];
     });
-
+  
     const total = Object.keys(this.state.selected).reduce(
       (acc, curr) => acc + this.state.selected[curr].cost,
       0
-    );
+    );*/
 
     //Holds skeleton of app and cart total
     return (
@@ -68,9 +63,10 @@ class App extends Component {
           <h1>ELF Computing | Laptops</h1>
         </header>
         <main>
-          <CustomOptionsBox
+          <CustomFeaturesBox
             selectedFeatures={this.state.selected}
-            featuresAvailable={this.props.features} />
+            featuresAvailable={this.props.features}
+            handleUpdate={option => this.updateOption(option)} />
           <section className="main__summary">
             <CartBox
               selectedFeatures={this.state.selected} />

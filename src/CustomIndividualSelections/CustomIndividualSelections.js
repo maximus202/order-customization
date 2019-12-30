@@ -9,7 +9,6 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 
 class CustomIndividualSelections extends React.Component {
     render() {
-        console.log(this.props)
         const { selectedFeatures } = this.props
         const features = Object.keys(this.props.featuresAvailable).map(
             (category, idx) => {
@@ -33,12 +32,7 @@ class CustomIndividualSelections extends React.Component {
                             </label>
                         </div>
                     ));
-                    console.log(itemOptions)
-                    console.log(itemHash)
-                    console.log(featuresAvailable)
                 });
-                console.log(features)
-                console.log(categoryHash)
             }
         )
         return (

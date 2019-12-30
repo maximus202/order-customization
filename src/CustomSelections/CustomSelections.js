@@ -3,7 +3,6 @@ import CustomIndividualSelections from '../CustomIndividualSelections/CustomIndi
 
 class CustomSelections extends React.Component {
     render() {
-        console.log(this.props)
         return (
             <div>
                 <CustomIndividualSelections
