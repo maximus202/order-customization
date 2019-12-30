@@ -4,8 +4,9 @@ import Option from '../Option/Option';
 class Options extends React.Component {
     render() {
         const feature = this.props.feature;
-        const optionsList = this.props.featuresAvailable[this.props.feature].map((option) => {
+        const optionsList = this.props.featuresAvailable[this.props.feature].map((option, index) => {
             return <Option
+                key={index}
                 feature={feature}
                 option={option}
                 handleUpdate={this.props.handleUpdate}
